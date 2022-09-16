@@ -1,0 +1,163 @@
+class Node:
+    def __init__(self,data=None):
+        self.val = data
+        self.next = None
+        
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+
+
+def push(self,val):
+  new_node = Node(val)
+
+  # no node currently
+  if self.head is None:
+    self.head = new_node
+    return 
+  # otherwise, reach the end and then insert
+  last = self.head
+  while last.next is not None:
+    last = last.next
+  
+  last.next = new_node
+
+LinkedList.push = push
+
+
+
+
+def pop(self):
+  if self.head is None:
+    raise Exception("cannot pop. No value.")
+
+  # case where there is only one node
+  if self.head.next is None:
+    val = self.head.val
+    self.head = None # automatic garbage collection
+    return val
+
+  # case where there is 2 or more nodes
+  # reach the previous to last node
+  temp = self.head
+  while temp.next is not None:
+    prev = temp
+    temp = temp.next
+
+  val = temp.val
+  prev.next = None
+  return val
+
+LinkedList.pop = pop
+
+
+
+def __str__(self):
+  ret_str = '['
+  temp = self.head
+  while temp is not None: # or just while temp:
+    ret_str += str(temp.val) + ','
+    temp = temp.next
+
+  ret_str = ret_str.rstrip(',')
+  ret_str += ']'
+  return ret_str
+
+LinkedList.__str__ = __str__
+
+
+
+
+
+l = LinkedList()
+l.push(1)
+l.push(2)
+l.push(3)
+
+print(l)
+print("pop:",l.pop())
+print(l)
+
+
+
+def insert(self,index,val):
+  new_node = Node(val)
+
+  # insertion at index 0 is differen
+  if index == 0:
+    new_node.next = self.head
+    self.head = new_node
+    return 
+
+  # for other indices
+  temp = self.head
+
+  counter = 0
+  while temp is not None and counter < index:
+    prev = temp
+    temp = temp.next
+    counter +=1
+
+
+  prev.next = new_node
+  new_node.next = temp
+
+LinkedList.insert = insert
+
+
+
+
+l = LinkedList()
+l.push(1)
+l.push(2)
+l.push(3)
+l.insert(0,10)
+print(l)
+
+l.insert(1,11)
+print(l)
+
+
+def remove(self,val):
+
+  temp = self.head
+
+  #check first node
+  if temp is not None:
+    if temp.val == val:
+      self.head = temp.next
+      temp = None # not needed , really
+      return 
+
+  # let's move to next nodes
+  # temp holds the value of the node that will be deleted 
+  while temp is not None:
+    if temp.val == val:
+      break
+
+      prev = temp
+      temp = temp.next
+
+  if temp is None: # not found
+    return 
+  prev.next = temp.next # just lose the reference to delete node
+
+LinkedList.remove = remove
+
+
+
+
+l = LinkedList()
+l.push(1)
+l.push(2)
+l.push(3)
+l.remove(2)
+print(l)
+
+l.remove(12)
+print(l)
+
+l.remove(1)
+print(l)
+
